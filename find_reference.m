@@ -1,5 +1,5 @@
 function [idx_ref] = find_reference(x, y, min_dist_idx)
-    delta_s = 1;
+    delta_s = 2;
     tot_dist = 0;
     idx_ref = 0;
     for i = min_dist_idx : length(x)

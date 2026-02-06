@@ -3,27 +3,11 @@ clc;
 clear all;
 close all;
 
-x_walker = -1;
-y_walker = -1;
-theta_walker = pi + pi/4;
+x_walker = 5;
+y_walker = 0;
+theta_walker = pi/4 + pi/2;
 
-rng(2)                 % reproducible randomness
-N = 250;
-
-dx = randn(1, N);
-dy = randn(1, N);
-
-x = cumsum(dx);
-y = cumsum(dy);
-
-% smooth it a bit so it’s not jagged
-window = 130;
-x = smoothdata(x, 'gaussian', window);
-y = smoothdata(y, 'gaussian', window);
-
-% scale up
-x = 3 * x / max(abs(x));
-y = 3 * y / max(abs(y));
+[x, y] = roundedSquare(8, 2);
 
 draw_path_walker(x, y, x_walker, y_walker, theta_walker);
 

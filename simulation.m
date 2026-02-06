@@ -1,6 +1,6 @@
 function [] = simulation(x0, y0, theta0, x_path, y_path, video_flag)
     % Define the range of force values
-    N = 1000;
+    N = 5000;
     Fx = ones(1,N) * 70;
     T = zeros(1,N);
     
@@ -32,8 +32,8 @@ function [] = simulation(x0, y0, theta0, x_path, y_path, video_flag)
     
     % Time step and simulation time
     dt = 1/200;
-    N_dt = 20;
-    v = VideoWriter('my_plot_video.mp4', 'MPEG-4');
+    N_dt = 10;
+    v = VideoWriter('around_a_square.mp4', 'MPEG-4');
     if(video_flag)
         v.FrameRate = 1 / (dt * N_dt);        % frames per second
         open(v);
@@ -72,6 +72,7 @@ function [] = simulation(x0, y0, theta0, x_path, y_path, video_flag)
         deltad(ii + 1) = deltad(ii) + deltadd(ii) * dt;
         delta(ii + 1) = delta(ii) + deltad(ii) * dt;
         
+        fprintf("ii: %d\tidx ref: %i\tlenght path: %i\n", ii, idx_ref, length(x_path));
         % Visualization update
         if ii > N_dt
             cla; % Clear
